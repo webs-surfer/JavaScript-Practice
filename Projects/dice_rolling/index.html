@@ -4,7 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+    margin-top: 100px;
+}
+input{
+    font-size: 1rem;
+    font-weight: bold; 
+    width: 100px;
+    text-align: center;
+}
+button{
+    box-shadow: 1px 2px 2px gray;
+    font-weight: bold;
+}
+button:hover{
+    background-color: rgb(232, 232, 232);
+}
+button:active{
+    background-color: rgb(60%, 60%, 70%);
+}
+.dice_text{
+    margin: 20px;
+}
+.dice_img img{
+    width: 100px;
+}
+.dice_img{
+    height: 360px;
+    width: 400px;
+    margin-left: 550px;
+}
+
+    </style>
 </head>
 <body>
     <div class="main">
@@ -14,6 +56,21 @@
         <div id="dice_text" class="dice_text"></div> 
         <div id="dice_img" class="dice_img"></div>
     </div>
-    <script src="script.js"></script>
+    <script >
+        function rollDice(){
+    const numofrolls = document.getElementById("myinput").value;
+    const dicetext = document.getElementById("dice_text");
+    const diceimg = document.getElementById("dice_img");
+    const values = [];
+    const imgaes = [];
+    for(let i=0; i < numofrolls; i++){
+        const value = Math.floor(Math.random()*6) + 1;
+        values.push(value);
+        imgaes.push(`<img src= "images/${value}.png">`);
+    }
+    dicetext.textContent = `dice : ${values.join(',')}`;
+    diceimg.innerHTML = imgaes.join('');
+}
+    </script>
 </body>
 </html>

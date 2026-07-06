@@ -4,7 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+}
+.hero_sec{
+    min-height: 750px;
+    
+    align-items: center;
+    position: relative;
+}
+.weather_search{
+    height: 400px;
+    width: 500px;
+    position: absolute;
+    left: 35%;
+    top: 22%;
+    
+    
+}
+.weatherText{
+    height: 246px;
+    display: flex;
+}
+.weatherShow{
+    width: 50%;
+    position: relative;
+}
+.weatherLoc{
+    width: 50%;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-top: 50px;
+    font-size: 22px;
+}
+.weatherLoc input{
+    margin-top: 15px;
+    margin-left: 35px;
+    padding-left: 3px;
+}
+.weatherLoc label{
+    margin-left: 70px;
+    font-weight: bold;
+}
+.weatherIcon{
+    height: 50%;
+    width: 100%;
+    font-size: 40px;
+    padding-left: 60px;
+    padding-top: 60px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px black;
+}
+.num{
+    margin-left: 100px;
+}
+.time{
+        margin-left: 100px;
+}
+.date{
+    margin-left: 100px;
+}
+.weatherNum{
+    height: 50%;
+    width: 100%;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding-left: 60px;
+    
+}
+.border{
+    border: 1px solid black;
+    position: absolute;
+    width: 260px;
+    height: 210px;
+    
+}
+.weather_search img{
+    height: 120px;
+    padding-left: 180px;
+    margin-top: 30px
+}
+.weatherLoc button{
+    height: 30px;
+    margin-top: 40px;
+    margin-left: 40px;
+    width: 150px;
+    background-color: rgb(0, 153, 255);
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.weatherLoc button:hover{
+    background-color: rgb(0, 72, 123);
+}
+@media only screen and (min-width: 0px) {
+    body{
+        background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+    }
+    .hero_sec{
+        min-height: 750px;
+        width: 0;
+        
+    }
+}
+@media only screen and (min-width: 450px) {
+    body{
+        background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+    }
+    .hero_sec{
+        max-height: 750px;
+        width: 0;
+        
+    }
+}
+@media only screen and (min-width: 765px) {
+    body{
+        background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+    }
+    .hero_sec{
+        max-height: 750px;
+        width: 0;
+        
+    }
+    .weather_search{
+        margin-left: 150px;
+    }
+}
+@media only screen and (min-width: 1020px) {
+    body{
+        background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+    }
+    .hero_sec{
+        max-height: 750px;
+        width: 0;
+        
+    }
+    .weather_search{
+        margin-left: 250px;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    body{
+        background-image: linear-gradient(rgb(0, 170, 208),rgb(255, 255, 255));
+    }
+    .hero_sec{
+        max-height: 750px;
+        width: 0;
+        
+    }
+    .weather_search{
+        margin-left: 550px;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="hero_sec">
@@ -31,6 +192,36 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script >
+    //http://api.weatherapi.com/v1/current.json?key=9ee04721a86b4927be1123529241110&q=${targetlocation}&aqi=no
+    const tempField = document.getElementById("weathericon");
+    const tempTime = document.getElementById("time");
+    const C = document.getElementById("c");
+    const tempLoc = document.getElementById("date");
+    const weathericon = document.getElementById("num");
+    const searchfield = document.getElementById("Location");
+    const submitbut = document.getElementById("mySubmit");
+    const border = document.getElementsByClassName("border");
+    let target = searchfield;
+
+
+    const fetchResult = async (targetlocation) => {
+        let url = `http://api.weatherapi.com/v1/current.json?key=9ee04721a86b4927be1123529241110&q=${targetlocation}&aqi=no`;
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log(data);
+
+        tempLoc.textContent = data.location.name;
+        tempTime.textContent = data.location.localtime;
+        tempField.textContent = data.current.temp_c;
+        weathericon.textContent = data.current.condition.text;
+        C.textContent = `'C`;
+    }
+    submitbut.onclick = function(e){
+        e.preventDefault();
+        target = searchfield.value;
+        fetchResult(target);
+    }
+     </script>
 </body>
 </html>

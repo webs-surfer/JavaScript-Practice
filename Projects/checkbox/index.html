@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .div{
+    width: auto;
+    height: 500px;
+    display: block;
+    position: absolute;
+    left: 30%;
+    
+}
+button{
+    font-size: 20px;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+}
+    </style>
 </head>
 <body>
     <div class="div">
@@ -20,6 +35,36 @@
     <p id="rohan"></p><br><br><br><br>
     <p id="submitresponse"></p>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const MyCheckBox = document.getElementById("mycheckbox");
+const MyStudyBox = document.getElementById("studing");
+const MyGymBox = document.getElementById("Gym");
+const MySportsBox = document.getElementById("Sports");
+const MySubmit = document.getElementById("mysubmit");
+const Rohan = document.getElementById("rohan");
+const submitres = document.getElementById("submitresponse");
+
+MySubmit.onclick = function(){
+
+    if(MyCheckBox.checked){
+        Rohan.textContent = `Welcome Mr. Rohan!`;
+        if(MyStudyBox.checked){
+            submitres.textContent = `Good. But Focus On Gym and Sports too`;
+        }
+        else if(MyGymBox.checked){
+            submitres.textContent = `Good. But Focus on Study and Sports too`;
+        }
+        else if(MySportsBox.checked){
+            submitres.textContent = `Good. But Focus on Study and Gym too`;
+        }
+        else{
+            submitres.textContent = `Focus on Your Goals.`;
+        }
+        }
+    else{
+        Rohan.textContent = `This Response can be only submit by Rohan`;
+        }   
+}
+    </script>
 </body>
 </html>
