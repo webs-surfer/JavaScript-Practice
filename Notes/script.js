@@ -77,12 +77,12 @@ console.log(newarr)
 console.log(newarr[1]);
 console.log(arr[0]);
 const myarr = new Array(1,2,3,4,5);
-myarr.push(6);
-myarr.pop();
+myarr.push(6); // [1,2,3,4,5,6]
+myarr.pop(); // [1,2,3,4,5]
 myarr.unshift(9); //add number in the starting of the array
-console.log(myarr);
-myarr.shift();
-console.log(myarr);//shift back to the last arr
+console.log(myarr); // [9, 1, 2, 3, 4, 5]
+myarr.shift(); //remove number from the starting of the array
+console.log(myarr);//shift back to the last arr [ 1, 2, 3, 4, 5]
 console.log(myarr.indexOf(3));
 const newestarr = myarr.join();
 console.log(typeof newestarr);
@@ -93,10 +93,10 @@ const busket = [...fruits, ...vegetables]; //joins all the array values
 console.log(busket);
 
 const newarr = [1,2,3,[1,2,3],[1,2,[1,2,3]]];
-const flatArray =  newarr.flat(Infinity); //flat out all the nested arrays
-console.log(flatArray);
+const flatArray =  newarr.flat(Infinity); //flat out all the nested arrays 
+console.log(flatArray); // [ 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3 ]
 
-console.log(Array.from('Rohan')); //creates array from string
+console.log(Array.from('Rohan')); //creates array from string ['R', 'o', 'h', 'a', 'n' ]
 const score1 = 100;
 const score2 = 200;
 const score3 = 300;
